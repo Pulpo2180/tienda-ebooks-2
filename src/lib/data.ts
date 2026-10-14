@@ -82,6 +82,7 @@ function createBook({
   coverTitle,
   coverSubtitle,
   color,
+  checkoutUrl,
   contents,
   introduction,
   closing,
@@ -96,24 +97,19 @@ function createBook({
   id: string;
   title: string;
   subtitle: string;
-  coverTitle: string;
+    coverTitle: string;
   coverSubtitle: string;
   color: string;
+  checkoutUrl?: string;
   contents: string[];
   introduction: string;
-  closing: string;
-  englishTitle: string;
-  englishSubtitle: string;
-  englishCoverTitle: string;
-  englishCoverSubtitle: string;
-  englishContents: string[];
-  englishIntroduction: string;
   englishClosing: string;
 }): BookEdition {
-  return {
+  r  return {
     id,
     title,
     subtitle,
+    checkoutUrl,
     language: 'es',
     versionLabel: 'Versión en Español',
     coverData: {
