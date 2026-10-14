@@ -77,17 +77,26 @@ function AboutMenuContent() {
 
 /** Renderiza navegación de marca, menús desplegables y acciones. */
 export default function Header({ lang, onSetLang, onOpenRegister, onOpenAddBook }: Props) {
-  const [isAdmin, setIsAdmin] = useState<boolean>(() => localStorage.getItem('isAdmin') === '1');
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(() => sessionStorage.getItem('luna_admin') === '1');
 
-  useEffect(() => {
-    localStorage.setItem('isAdmin', isAdmin ? '1' : '0');
-  }, [isAdmin]);
+function handleAdminLogin() {
+  // CAMBIA esta contraseña por la tuya
+  const PASS = 'LunaAdmin2026!';
+  const input = window.prompt('Contraseña de administrador:');
+  if (input === PASS) {
+    sessionStorage.setItem('luna_admin', '1');
+    setIsAdmin(true);
+  } else if (input !== null) {
+    alert('Contraseña incorrecta');
+  }
+}
 
-  /** Cambia el modo administrador persistido en el navegador. */
-  function handleToggleAdmin() {
-    setIsAdmin(previous => !previous);
+ if (typeof window !== 'undefined' && window.location.search.includes('admin')) {
+  setTimeout(() => handleAdminLogin(), 500);
+} {
+  sessionStorage.removeItem('luna_admin');
+  setIsAdmin(false);
+}
   }
 
   /** Cambia el idioma activo y cierra su selector. */
@@ -174,15 +183,17 @@ export default function Header({ lang, onSetLang, onOpenRegister, onOpenAddBook 
               </div>
             )}
           </div>
-
-          <button type="button" onClick={onOpenAddBook} className="min-h-11 rounded-xl border border-white/15 bg-white/[0.07] px-3.5 py-2.5 text-sm font-semibold text-white">
-            {lang === 'es' ? 'Agregar libro' : lang === 'pt' ? 'Adicionar livro' : 'Add book'}
-          </button>
-          <button type="button" onClick={onOpenRegister} className="min-h-11 rounded-xl border border-white/15 bg-white/[0.07] px-3.5 py-2.5 text-sm font-semibold text-white">
-            {lang === 'es' ? 'Registrar' : lang === 'pt' ? 'Registrar' : 'Register'}
-          </button>
-          <button type="button" onClick={handleToggleAdmin} aria-pressed={isAdmin} className={`min-h-11 rounded-xl px-4 py-2.5 text-sm font-black ${isAdmin ? 'bg-[#D7FF3F] text-[#111827]' : 'border border-white/20 bg-transparent text-white'}`}>
-            {isAdmin ? 'Admin ON' : 'Admin'}
+{isAdmin && (
+  <button type="button" onClick={onOpenAddBook} className="min-h-11 rounded-xl border border-white/15 bg-white/[0.07] px-3.5 py-2.5 text-sm font-semibold text-white">
+    {lang === 'es' ? 'Agregar libro' : lang === 'pt' ? 'Adicionar livro' : 'Add book'}
+  </button>
+)}
+{isAdmin ? (
+  <button type="button" onClick={handleAdminLogout} className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-black bg-[#D7FF3F] text-[#111827]">
+    Salir Admin
+  </button>
+) : null}
+         
           </button>
         </nav>
       </div>
