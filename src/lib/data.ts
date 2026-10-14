@@ -105,7 +105,7 @@ function createBook({
   introduction: string;
   englishClosing: string;
 }): BookEdition {
-  r  return {
+   return {
     id,
     title,
     subtitle,
