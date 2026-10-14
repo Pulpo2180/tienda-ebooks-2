@@ -77,10 +77,9 @@ function AboutMenuContent() {
 
 /** Renderiza navegación de marca, menús desplegables y acciones. */
 export default function Header({ lang, onSetLang, onOpenRegister, onOpenAddBook }: Props) {
-  const [isAdmin, setIsAdmin] = useState<boolean>(() => sessionStorage.getItem('luna_admin') === '1');
+ const [isAdmin, setIsAdmin] = useState<boolean>(() => sessionStorage.getItem('luna_admin') === '1');
 
 function handleAdminLogin() {
-  // CAMBIA esta contraseña por la tuya
   const PASS = 'LunaAdmin2026!';
   const input = window.prompt('Contraseña de administrador:');
   if (input === PASS) {
@@ -91,7 +90,16 @@ function handleAdminLogin() {
   }
 }
 
- if (typeof window !== 'undefined' && window.location.search.includes('admin')) {
+function handleAdminLogout() {
+  sessionStorage.removeItem('luna_admin');
+  setIsAdmin(false);
+}
+
+useEffect(() => {
+  if (window.location.search.includes('admin')) {
+    setTimeout(() => handleAdminLogin(), 500);
+  }
+}, []); {
   setTimeout(() => handleAdminLogin(), 500);
 } {
   sessionStorage.removeItem('luna_admin');
