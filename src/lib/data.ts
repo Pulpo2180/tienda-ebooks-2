@@ -42,7 +42,7 @@ export interface BookEdition {
   pdfUrl?: string;
   /** Enlace de compra, si está configurado. */
   checkoutUrl?: string;
-  /** Traducciones de título, resumen, índice y capítulos. */
+ /** Traducciones de título, resumen, índice y capítulos. */
   translations?: Partial<Record<'en' | 'pt', {
     /** Título traducido. */
     title: string;
@@ -198,6 +198,7 @@ const books: BookEdition[] = [
     coverTitle: 'HÁBITOS DE FINANZAS PERSONALES',
     coverSubtitle: 'Una guía para organizar objetivos y crear hábitos financieros sostenibles. Comprender antes de actuar.',
     color: '#D2A52A',
+    checkoutUrl: "https://lunalibros.lemonsqueezy.com/checkout/buy/f45f4aa3-e932-43f7-bc09-91e9afa34c85",
     contents: habitsContents,
     introduction: 'Tu tranquilidad financiera es una cuestión de comportamiento repetido, no de cantidad. Dos personas con el mismo ingreso pueden tener destinos opuestos: la diferencia suele estar en los hábitos, las emociones y las decisiones cotidianas. Este libro propone comprender por qué actuamos como actuamos antes de intentar cambiar presupuestos o inversiones. Es una edición teórica: busca lucidez, no prisa.',
     closing: 'Tus finanzas son hábitos, no veredictos. Mira tu dinero sin culpa ni comparación y pregúntate: “¿esto me da libertad o me la quita?”. La verdadera riqueza es vivir en paz con lo que tienes mientras construyes lo que sueñas. Esta edición es educativa y no constituye asesoría financiera personalizada.',
