@@ -78,7 +78,8 @@ function AboutMenuContent() {
 /** Renderiza navegación de marca, menús desplegables y acciones. */
 export default function Header({ lang, onSetLang, onOpenRegister, onOpenAddBook }: Props) {
  const [isAdmin, setIsAdmin] = useState<boolean>(() => sessionStorage.getItem('luna_admin') === '1');
-
+const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
 function handleAdminLogin() {
   const PASS = 'LunaAdmin2026!';
   const input = window.prompt('Contraseña de administrador:');
@@ -99,14 +100,7 @@ useEffect(() => {
   if (window.location.search.includes('admin')) {
     setTimeout(() => handleAdminLogin(), 500);
   }
-}, []); {
-  setTimeout(() => handleAdminLogin(), 500);
-} {
-  sessionStorage.removeItem('luna_admin');
-  setIsAdmin(false);
-}
-  }
-
+}, []);
   /** Cambia el idioma activo y cierra su selector. */
   function handleSelectLanguage(language: LangCode) {
     onSetLang(language);
