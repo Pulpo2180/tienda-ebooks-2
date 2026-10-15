@@ -29,7 +29,7 @@ function createPortugueseBook({
   checkoutUrl?: string;
   sections: { title: string; paragraphs: string[] }[];
   
-}): Book & { checkoutUrl?: string } 
+}): Book & { checkoutUrl?: string } {
   const content = [
     `<h1>${title}</h1>`,
     `<p>${description}</p>`,
