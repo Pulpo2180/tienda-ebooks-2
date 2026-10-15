@@ -19,14 +19,17 @@ function createPortugueseBook({
   title,
   description,
   cover,
+    checkoutUrl,
   sections,
 }: {
   id: string;
   title: string;
   description: string;
   cover: string;
+  checkoutUrl?: string;
   sections: { title: string; paragraphs: string[] }[];
-}): Book {
+  
+}): Book & { checkoutUrl?: string } 
   const content = [
     `<h1>${title}</h1>`,
     `<p>${description}</p>`,
@@ -39,6 +42,7 @@ function createPortugueseBook({
     title,
     description,
     cover,
+        checkoutUrl,
     lang: 'pt',
     price: PRICE,
     content,
@@ -52,6 +56,7 @@ export const portugueseBooks: Book[] = [
     title: 'Hábitos de Finanças Pessoais',
     description: 'Uma leitura teórica sobre hábitos, emoções e princípios para construir uma relação mais sustentável com o dinheiro.',
     cover: 'https://pub-cdn.sider.ai/u/U0X7H47829Y/web-coder/6a399748a419c8a5108fef65/resource/3183dff1-01dc-4814-bf2f-daa22c28cc81.jpg',
+        checkoutUrl: "https://lunalibros.lemonsqueezy.com/checkout/buy/3a36f2a4-15c3-4790-9e51-f55de21010f8",
     sections: [
       {
         title: 'Introdução — Suas finanças refletem seus hábitos',
