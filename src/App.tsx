@@ -306,12 +306,13 @@ export default function App() {
   }
 
   /** Abre el checkout configurado para esta edición. */
-  function handleBuy(book: (typeof books)[number]) {
-    if (!book.checkoutUrl) {
+  function handleBuy(book: (typeof books)[number] & { englishCheckoutUrl?: string }) {
+    const url = lang === 'en' ? (book.englishCheckoutUrl || book.checkoutUrl) : book.checkoutUrl;
+    if (!url) {
       window.alert(text.checkoutMissing);
       return;
     }
-    window.open(book.checkoutUrl, '_blank', 'noopener,noreferrer');
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   /** Abre el PDF adjunto o genera una vista imprimible del contenido. */
